@@ -1,0 +1,12 @@
+D:\Galileu\PROJETO\SabeTaoBem\SaoTaoBem_DataAccess\bin\Debug\SaoTaoBem_DataAccess.dll.config
+D:\Galileu\PROJETO\SabeTaoBem\SaoTaoBem_DataAccess\bin\Debug\SaoTaoBem_DataAccess.dll
+D:\Galileu\PROJETO\SabeTaoBem\SaoTaoBem_DataAccess\bin\Debug\SaoTaoBem_DataAccess.pdb
+D:\Galileu\PROJETO\SabeTaoBem\SaoTaoBem_DataAccess\bin\Debug\EntityFramework.dll
+D:\Galileu\PROJETO\SabeTaoBem\SaoTaoBem_DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\Galileu\PROJETO\SabeTaoBem\SaoTaoBem_DataAccess\bin\Debug\EntityFramework.xml
+D:\Galileu\PROJETO\SabeTaoBem\SaoTaoBem_DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\Galileu\PROJETO\SabeTaoBem\SaoTaoBem_DataAccess\obj\Debug\SaoTaoBem_DataAccess.csproj.CoreCompileInputs.cache
+D:\Galileu\PROJETO\SabeTaoBem\SaoTaoBem_DataAccess\obj\Debug\SaoTaoBem_DataAccess.csproj.CopyComplete
+D:\Galileu\PROJETO\SabeTaoBem\SaoTaoBem_DataAccess\obj\Debug\SaoTaoBem_DataAccess.dll
+D:\Galileu\PROJETO\SabeTaoBem\SaoTaoBem_DataAccess\obj\Debug\SaoTaoBem_DataAccess.pdb
+D:\Galileu\PROJETO\SabeTaoBem\SaoTaoBem_DataAccess\obj\Debug\SaoTaoBem_DataAccess.csprojAssemblyReference.cache

@@ -1,0 +1,866 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SabeTaoBemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbComments">
+    <Key>
+      <PropertyRef Name="IdComment" />
+    </Key>
+    <Property Name="IdComment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RecipeId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CommentDate" Type="DateTime" Precision="3" />
+    <Property Name="StatusID" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="tbRecipes" Relationship="Self.FK_Recipe_Comment" FromRole="tbComments" ToRole="tbRecipes" />
+    <NavigationProperty Name="tbStatus" Relationship="Self.FK_Status_Comment" FromRole="tbComments" ToRole="tbStatus" />
+    <NavigationProperty Name="tbUsers" Relationship="Self.FK_User_Comment" FromRole="tbComments" ToRole="tbUsers" />
+  </EntityType>
+  <EntityType Name="tbIngredientCategory">
+    <Key>
+      <PropertyRef Name="IdIngCategory" />
+    </Key>
+    <Property Name="IdIngCategory" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbIngredients" Relationship="Self.FK_IngCategory_Ingredient" FromRole="tbIngredientCategory" ToRole="tbIngredients" />
+  </EntityType>
+  <EntityType Name="tbIngredients">
+    <Key>
+      <PropertyRef Name="IdIngredient" />
+    </Key>
+    <Property Name="IdIngredient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IngredientName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IngCategoryId" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="tbIngredientCategory" Relationship="Self.FK_IngCategory_Ingredient" FromRole="tbIngredients" ToRole="tbIngredientCategory" />
+    <NavigationProperty Name="tbRecipeIngredient" Relationship="Self.FK_Ing_IngQuantityUnit" FromRole="tbIngredients" ToRole="tbRecipeIngredient" />
+  </EntityType>
+  <EntityType Name="tbLogin">
+    <Key>
+      <PropertyRef Name="IdLogin" />
+    </Key>
+    <Property Name="IdLogin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbUsers" Relationship="Self.FK_Login_Users" FromRole="tbLogin" ToRole="tbUsers" />
+  </EntityType>
+  <EntityType Name="tbRecipeCategory">
+    <Key>
+      <PropertyRef Name="IdRecCategory" />
+    </Key>
+    <Property Name="IdRecCategory" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbRecipes" Relationship="Self.FK_RecCategory_Recipe" FromRole="tbRecipeCategory" ToRole="tbRecipes" />
+  </EntityType>
+  <EntityType Name="tbRecipeDifficultyLevel">
+    <Key>
+      <PropertyRef Name="IdRecDiffLevel" />
+    </Key>
+    <Property Name="IdRecDiffLevel" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DifficultyLevel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbRecipes" Relationship="Self.FK_RecDifficultyLevel_Recipe" FromRole="tbRecipeDifficultyLevel" ToRole="tbRecipes" />
+  </EntityType>
+  <EntityType Name="tbRecipeFoodStyle">
+    <Key>
+      <PropertyRef Name="IdRecFoodStyle" />
+    </Key>
+    <Property Name="IdRecFoodStyle" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodStyle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbRecipes" Relationship="Self.FK_RecFoodStyle_Recipe" FromRole="tbRecipeFoodStyle" ToRole="tbRecipes" />
+  </EntityType>
+  <EntityType Name="tbRecipeIngredient">
+    <Key>
+      <PropertyRef Name="IdRecipe" />
+      <PropertyRef Name="IdIngredient" />
+    </Key>
+    <Property Name="IdRecipe" Type="Int32" Nullable="false" />
+    <Property Name="IdIngredient" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="UnitId" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="tbIngredients" Relationship="Self.FK_Ing_IngQuantityUnit" FromRole="tbRecipeIngredient" ToRole="tbIngredients" />
+    <NavigationProperty Name="tbRecipes" Relationship="Self.FK_Recipe" FromRole="tbRecipeIngredient" ToRole="tbRecipes" />
+    <NavigationProperty Name="tbUnits" Relationship="Self.FK_Unit_IngQuantityUnit" FromRole="tbRecipeIngredient" ToRole="tbUnits" />
+  </EntityType>
+  <EntityType Name="tbRecipeMealCost">
+    <Key>
+      <PropertyRef Name="IdRecMealCost" />
+    </Key>
+    <Property Name="IdRecMealCost" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MealCost" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbRecipes" Relationship="Self.FK_RecMealCost_Recipe" FromRole="tbRecipeMealCost" ToRole="tbRecipes" />
+  </EntityType>
+  <EntityType Name="tbRecipes">
+    <Key>
+      <PropertyRef Name="IdRecipe" />
+    </Key>
+    <Property Name="IdRecipe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RecipeName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="RecCategoryId" Type="Byte" Nullable="false" />
+    <Property Name="RecFoodStyleId" Type="Byte" Nullable="false" />
+    <Property Name="RecDifficultyLevelId" Type="Byte" Nullable="false" />
+    <Property Name="RecMealCostId" Type="Byte" Nullable="false" />
+    <Property Name="PreparationTime" Type="Int32" Nullable="false" />
+    <Property Name="CookTime" Type="Int32" Nullable="false" />
+    <Property Name="Doses" Type="Int32" Nullable="false" />
+    <Property Name="Evaluation" Type="Decimal" Precision="2" Scale="1" />
+    <Property Name="Description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="idStatus" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="tbComments" Relationship="Self.FK_Recipe_Comment" FromRole="tbRecipes" ToRole="tbComments" />
+    <NavigationProperty Name="tbRecipeCategory" Relationship="Self.FK_RecCategory_Recipe" FromRole="tbRecipes" ToRole="tbRecipeCategory" />
+    <NavigationProperty Name="tbRecipeDifficultyLevel" Relationship="Self.FK_RecDifficultyLevel_Recipe" FromRole="tbRecipes" ToRole="tbRecipeDifficultyLevel" />
+    <NavigationProperty Name="tbRecipeFoodStyle" Relationship="Self.FK_RecFoodStyle_Recipe" FromRole="tbRecipes" ToRole="tbRecipeFoodStyle" />
+    <NavigationProperty Name="tbRecipeIngredient" Relationship="Self.FK_Recipe" FromRole="tbRecipes" ToRole="tbRecipeIngredient" />
+    <NavigationProperty Name="tbRecipeMealCost" Relationship="Self.FK_RecMealCost_Recipe" FromRole="tbRecipes" ToRole="tbRecipeMealCost" />
+    <NavigationProperty Name="tbStatus" Relationship="Self.FK_Status_Recipe" FromRole="tbRecipes" ToRole="tbStatus" />
+    <NavigationProperty Name="tbUsers" Relationship="Self.FK_UserRec_Recipe" FromRole="tbRecipes" ToRole="tbUsers" />
+  </EntityType>
+  <EntityType Name="tbStatus">
+    <Key>
+      <PropertyRef Name="IdStatus" />
+    </Key>
+    <Property Name="IdStatus" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbComments" Relationship="Self.FK_Status_Comment" FromRole="tbStatus" ToRole="tbComments" />
+    <NavigationProperty Name="tbRecipes" Relationship="Self.FK_Status_Recipe" FromRole="tbStatus" ToRole="tbRecipes" />
+    <NavigationProperty Name="tbUsers" Relationship="Self.FK_Status_Users" FromRole="tbStatus" ToRole="tbUsers" />
+  </EntityType>
+  <EntityType Name="tbUnitCategory">
+    <Key>
+      <PropertyRef Name="IdUnitCategory" />
+    </Key>
+    <Property Name="IdUnitCategory" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbUnits" Relationship="Self.FK_UnitCategory_Unit" FromRole="tbUnitCategory" ToRole="tbUnits" />
+  </EntityType>
+  <EntityType Name="tbUnits">
+    <Key>
+      <PropertyRef Name="IdUnit" />
+    </Key>
+    <Property Name="IdUnit" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UnitName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UnitCategoryId" Type="Byte" Nullable="false" />
+    <Property Name="UnitSystemId" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="tbRecipeIngredient" Relationship="Self.FK_Unit_IngQuantityUnit" FromRole="tbUnits" ToRole="tbRecipeIngredient" />
+    <NavigationProperty Name="tbUnitCategory" Relationship="Self.FK_UnitCategory_Unit" FromRole="tbUnits" ToRole="tbUnitCategory" />
+    <NavigationProperty Name="tbUnitSystem" Relationship="Self.FK_UnitSystem_Unit" FromRole="tbUnits" ToRole="tbUnitSystem" />
+  </EntityType>
+  <EntityType Name="tbUnitSystem">
+    <Key>
+      <PropertyRef Name="IdUnitSystem" />
+    </Key>
+    <Property Name="IdUnitSystem" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="System" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbUnits" Relationship="Self.FK_UnitSystem_Unit" FromRole="tbUnitSystem" ToRole="tbUnits" />
+  </EntityType>
+  <EntityType Name="tbUserFunction">
+    <Key>
+      <PropertyRef Name="IdUserFunction" />
+    </Key>
+    <Property Name="IdUserFunction" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserFunction" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbUsers" Relationship="Self.FK_UserFunction_Users" FromRole="tbUserFunction" ToRole="tbUsers" />
+  </EntityType>
+  <EntityType Name="tbUsers">
+    <Key>
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
+    <Property Name="UserFunctionId" Type="Byte" Nullable="false" />
+    <Property Name="LoginId" Type="Int32" Nullable="false" />
+    <Property Name="StatusId" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="tbComments" Relationship="Self.FK_User_Comment" FromRole="tbUsers" ToRole="tbComments" />
+    <NavigationProperty Name="tbLogin" Relationship="Self.FK_Login_Users" FromRole="tbUsers" ToRole="tbLogin" />
+    <NavigationProperty Name="tbRecipes" Relationship="Self.FK_UserRec_Recipe" FromRole="tbUsers" ToRole="tbRecipes" />
+    <NavigationProperty Name="tbStatus" Relationship="Self.FK_Status_Users" FromRole="tbUsers" ToRole="tbStatus" />
+    <NavigationProperty Name="tbUserFunction" Relationship="Self.FK_UserFunction_Users" FromRole="tbUsers" ToRole="tbUserFunction" />
+  </EntityType>
+  <Association Name="FK_Recipe_Comment">
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="1" />
+    <End Role="tbComments" Type="Self.tbComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRecipes">
+        <PropertyRef Name="IdRecipe" />
+      </Principal>
+      <Dependent Role="tbComments">
+        <PropertyRef Name="RecipeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Comment">
+    <End Role="tbStatus" Type="Self.tbStatus" Multiplicity="1" />
+    <End Role="tbComments" Type="Self.tbComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbStatus">
+        <PropertyRef Name="IdStatus" />
+      </Principal>
+      <Dependent Role="tbComments">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Comment">
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="1" />
+    <End Role="tbComments" Type="Self.tbComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsers">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="tbComments">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IngCategory_Ingredient">
+    <End Role="tbIngredientCategory" Type="Self.tbIngredientCategory" Multiplicity="1" />
+    <End Role="tbIngredients" Type="Self.tbIngredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbIngredientCategory">
+        <PropertyRef Name="IdIngCategory" />
+      </Principal>
+      <Dependent Role="tbIngredients">
+        <PropertyRef Name="IngCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ing_IngQuantityUnit">
+    <End Role="tbIngredients" Type="Self.tbIngredients" Multiplicity="1" />
+    <End Role="tbRecipeIngredient" Type="Self.tbRecipeIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbIngredients">
+        <PropertyRef Name="IdIngredient" />
+      </Principal>
+      <Dependent Role="tbRecipeIngredient">
+        <PropertyRef Name="IdIngredient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Login_Users">
+    <End Role="tbLogin" Type="Self.tbLogin" Multiplicity="1" />
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbLogin">
+        <PropertyRef Name="IdLogin" />
+      </Principal>
+      <Dependent Role="tbUsers">
+        <PropertyRef Name="LoginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecCategory_Recipe">
+    <End Role="tbRecipeCategory" Type="Self.tbRecipeCategory" Multiplicity="1" />
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRecipeCategory">
+        <PropertyRef Name="IdRecCategory" />
+      </Principal>
+      <Dependent Role="tbRecipes">
+        <PropertyRef Name="RecCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecDifficultyLevel_Recipe">
+    <End Role="tbRecipeDifficultyLevel" Type="Self.tbRecipeDifficultyLevel" Multiplicity="1" />
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRecipeDifficultyLevel">
+        <PropertyRef Name="IdRecDiffLevel" />
+      </Principal>
+      <Dependent Role="tbRecipes">
+        <PropertyRef Name="RecDifficultyLevelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecFoodStyle_Recipe">
+    <End Role="tbRecipeFoodStyle" Type="Self.tbRecipeFoodStyle" Multiplicity="1" />
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRecipeFoodStyle">
+        <PropertyRef Name="IdRecFoodStyle" />
+      </Principal>
+      <Dependent Role="tbRecipes">
+        <PropertyRef Name="RecFoodStyleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe">
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="1" />
+    <End Role="tbRecipeIngredient" Type="Self.tbRecipeIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRecipes">
+        <PropertyRef Name="IdRecipe" />
+      </Principal>
+      <Dependent Role="tbRecipeIngredient">
+        <PropertyRef Name="IdRecipe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Unit_IngQuantityUnit">
+    <End Role="tbUnits" Type="Self.tbUnits" Multiplicity="1" />
+    <End Role="tbRecipeIngredient" Type="Self.tbRecipeIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUnits">
+        <PropertyRef Name="IdUnit" />
+      </Principal>
+      <Dependent Role="tbRecipeIngredient">
+        <PropertyRef Name="UnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecMealCost_Recipe">
+    <End Role="tbRecipeMealCost" Type="Self.tbRecipeMealCost" Multiplicity="1" />
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRecipeMealCost">
+        <PropertyRef Name="IdRecMealCost" />
+      </Principal>
+      <Dependent Role="tbRecipes">
+        <PropertyRef Name="RecMealCostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Recipe">
+    <End Role="tbStatus" Type="Self.tbStatus" Multiplicity="1" />
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbStatus">
+        <PropertyRef Name="IdStatus" />
+      </Principal>
+      <Dependent Role="tbRecipes">
+        <PropertyRef Name="idStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRec_Recipe">
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="1" />
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsers">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="tbRecipes">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Users">
+    <End Role="tbStatus" Type="Self.tbStatus" Multiplicity="1" />
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbStatus">
+        <PropertyRef Name="IdStatus" />
+      </Principal>
+      <Dependent Role="tbUsers">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UnitCategory_Unit">
+    <End Role="tbUnitCategory" Type="Self.tbUnitCategory" Multiplicity="1" />
+    <End Role="tbUnits" Type="Self.tbUnits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUnitCategory">
+        <PropertyRef Name="IdUnitCategory" />
+      </Principal>
+      <Dependent Role="tbUnits">
+        <PropertyRef Name="UnitCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UnitSystem_Unit">
+    <End Role="tbUnitSystem" Type="Self.tbUnitSystem" Multiplicity="1" />
+    <End Role="tbUnits" Type="Self.tbUnits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUnitSystem">
+        <PropertyRef Name="IdUnitSystem" />
+      </Principal>
+      <Dependent Role="tbUnits">
+        <PropertyRef Name="UnitSystemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserFunction_Users">
+    <End Role="tbUserFunction" Type="Self.tbUserFunction" Multiplicity="1" />
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUserFunction">
+        <PropertyRef Name="IdUserFunction" />
+      </Principal>
+      <Dependent Role="tbUsers">
+        <PropertyRef Name="UserFunctionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SabeTaoBemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbComments" EntityType="Self.tbComments" />
+    <EntitySet Name="tbIngredientCategory" EntityType="Self.tbIngredientCategory" />
+    <EntitySet Name="tbIngredients" EntityType="Self.tbIngredients" />
+    <EntitySet Name="tbLogin" EntityType="Self.tbLogin" />
+    <EntitySet Name="tbRecipeCategory" EntityType="Self.tbRecipeCategory" />
+    <EntitySet Name="tbRecipeDifficultyLevel" EntityType="Self.tbRecipeDifficultyLevel" />
+    <EntitySet Name="tbRecipeFoodStyle" EntityType="Self.tbRecipeFoodStyle" />
+    <EntitySet Name="tbRecipeIngredient" EntityType="Self.tbRecipeIngredient" />
+    <EntitySet Name="tbRecipeMealCost" EntityType="Self.tbRecipeMealCost" />
+    <EntitySet Name="tbRecipes" EntityType="Self.tbRecipes" />
+    <EntitySet Name="tbStatus" EntityType="Self.tbStatus" />
+    <EntitySet Name="tbUnitCategory" EntityType="Self.tbUnitCategory" />
+    <EntitySet Name="tbUnits" EntityType="Self.tbUnits" />
+    <EntitySet Name="tbUnitSystem" EntityType="Self.tbUnitSystem" />
+    <EntitySet Name="tbUserFunction" EntityType="Self.tbUserFunction" />
+    <EntitySet Name="tbUsers" EntityType="Self.tbUsers" />
+    <AssociationSet Name="FK_Recipe_Comment" Association="Self.FK_Recipe_Comment">
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+      <End Role="tbComments" EntitySet="tbComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Comment" Association="Self.FK_Status_Comment">
+      <End Role="tbStatus" EntitySet="tbStatus" />
+      <End Role="tbComments" EntitySet="tbComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Comment" Association="Self.FK_User_Comment">
+      <End Role="tbUsers" EntitySet="tbUsers" />
+      <End Role="tbComments" EntitySet="tbComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IngCategory_Ingredient" Association="Self.FK_IngCategory_Ingredient">
+      <End Role="tbIngredientCategory" EntitySet="tbIngredientCategory" />
+      <End Role="tbIngredients" EntitySet="tbIngredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ing_IngQuantityUnit" Association="Self.FK_Ing_IngQuantityUnit">
+      <End Role="tbIngredients" EntitySet="tbIngredients" />
+      <End Role="tbRecipeIngredient" EntitySet="tbRecipeIngredient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Login_Users" Association="Self.FK_Login_Users">
+      <End Role="tbLogin" EntitySet="tbLogin" />
+      <End Role="tbUsers" EntitySet="tbUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecCategory_Recipe" Association="Self.FK_RecCategory_Recipe">
+      <End Role="tbRecipeCategory" EntitySet="tbRecipeCategory" />
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecDifficultyLevel_Recipe" Association="Self.FK_RecDifficultyLevel_Recipe">
+      <End Role="tbRecipeDifficultyLevel" EntitySet="tbRecipeDifficultyLevel" />
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecFoodStyle_Recipe" Association="Self.FK_RecFoodStyle_Recipe">
+      <End Role="tbRecipeFoodStyle" EntitySet="tbRecipeFoodStyle" />
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe" Association="Self.FK_Recipe">
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+      <End Role="tbRecipeIngredient" EntitySet="tbRecipeIngredient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Unit_IngQuantityUnit" Association="Self.FK_Unit_IngQuantityUnit">
+      <End Role="tbUnits" EntitySet="tbUnits" />
+      <End Role="tbRecipeIngredient" EntitySet="tbRecipeIngredient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecMealCost_Recipe" Association="Self.FK_RecMealCost_Recipe">
+      <End Role="tbRecipeMealCost" EntitySet="tbRecipeMealCost" />
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Recipe" Association="Self.FK_Status_Recipe">
+      <End Role="tbStatus" EntitySet="tbStatus" />
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRec_Recipe" Association="Self.FK_UserRec_Recipe">
+      <End Role="tbUsers" EntitySet="tbUsers" />
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Users" Association="Self.FK_Status_Users">
+      <End Role="tbStatus" EntitySet="tbStatus" />
+      <End Role="tbUsers" EntitySet="tbUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UnitCategory_Unit" Association="Self.FK_UnitCategory_Unit">
+      <End Role="tbUnitCategory" EntitySet="tbUnitCategory" />
+      <End Role="tbUnits" EntitySet="tbUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UnitSystem_Unit" Association="Self.FK_UnitSystem_Unit">
+      <End Role="tbUnitSystem" EntitySet="tbUnitSystem" />
+      <End Role="tbUnits" EntitySet="tbUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserFunction_Users" Association="Self.FK_UserFunction_Users">
+      <End Role="tbUserFunction" EntitySet="tbUserFunction" />
+      <End Role="tbUsers" EntitySet="tbUsers" />
+    </AssociationSet>
+    <FunctionImport Name="spDelComment">
+      <Parameter Name="idComment" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spDelIngredient">
+      <Parameter Name="idIngredient" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spDelLogin">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spDelRecipe">
+      <Parameter Name="idRecipe" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spDelRecipeIng">
+      <Parameter Name="idRecipe" Mode="In" Type="Int32" />
+      <Parameter Name="idIngredient" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spDelUnit">
+      <Parameter Name="idUnit" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spDelUser">
+      <Parameter Name="idUser" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsComment">
+      <Parameter Name="comment" Mode="In" Type="String" />
+      <Parameter Name="recipeId" Mode="In" Type="Int32" />
+      <Parameter Name="userId" Mode="In" Type="Int32" />
+      <Parameter Name="statusID" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spInsIngredient">
+      <Parameter Name="ingredientName" Mode="In" Type="String" />
+      <Parameter Name="categoryId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spInsIngredientCategory">
+      <Parameter Name="category" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spInsLogin">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spInsRecipeIng">
+      <Parameter Name="idRecipe" Mode="In" Type="Int32" />
+      <Parameter Name="idIngredient" Mode="In" Type="Int32" />
+      <Parameter Name="unitId" Mode="In" Type="Byte" />
+      <Parameter Name="quantity" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="spInsRecipes">
+      <Parameter Name="recipeName" Mode="In" Type="String" />
+      <Parameter Name="userId" Mode="In" Type="Int32" />
+      <Parameter Name="recCategoryId" Mode="In" Type="Byte" />
+      <Parameter Name="recFoodStyleId" Mode="In" Type="Byte" />
+      <Parameter Name="recDifficultyLevelId" Mode="In" Type="Byte" />
+      <Parameter Name="recMealCostId" Mode="In" Type="Byte" />
+      <Parameter Name="preparationTime" Mode="In" Type="Int32" />
+      <Parameter Name="cookTime" Mode="In" Type="Int32" />
+      <Parameter Name="doses" Mode="In" Type="Int32" />
+      <Parameter Name="description" Mode="In" Type="String" />
+      <Parameter Name="statusId" Mode="In" Type="Byte" />
+      <Parameter Name="evaluation" Mode="In" Type="Decimal" />
+      <Parameter Name="picture" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="spInsUnits">
+      <Parameter Name="unitName" Mode="In" Type="String" />
+      <Parameter Name="unitCategoryId" Mode="In" Type="Byte" />
+      <Parameter Name="unitSystemId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spInsUser">
+      <Parameter Name="firstName" Mode="In" Type="String" />
+      <Parameter Name="lastName" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="userFunctionId" Mode="In" Type="Byte" />
+      <Parameter Name="statusId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spSelComment" ReturnType="Collection(SabeTaoBemModel.spSelComment_Result)">
+      <Parameter Name="idComment" Mode="In" Type="Int32" />
+      <Parameter Name="recipeId" Mode="In" Type="Int32" />
+      <Parameter Name="userId" Mode="In" Type="Int32" />
+      <Parameter Name="statusId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spSelIngredient" ReturnType="Collection(SabeTaoBemModel.spSelIngredient_Result)">
+      <Parameter Name="idIngredient" Mode="In" Type="Int32" />
+      <Parameter Name="ingredientName" Mode="In" Type="String" />
+      <Parameter Name="idIngCategory" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spSelIngredientCategory" ReturnType="Collection(SabeTaoBemModel.spSelIngredientCategory_Result)">
+      <Parameter Name="id" Mode="In" Type="Byte" />
+      <Parameter Name="ingCategory" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spSelLogin" ReturnType="Collection(SabeTaoBemModel.spSelLogin_Result)">
+      <Parameter Name="idLogin" Mode="In" Type="Int32" />
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spSelRecipeIng" ReturnType="Collection(SabeTaoBemModel.spSelRecipeIng_Result)">
+      <Parameter Name="idRecipe" Mode="In" Type="Int32" />
+      <Parameter Name="idIngredient" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spSelRecipes" ReturnType="Collection(SabeTaoBemModel.spSelRecipes_Result)">
+      <Parameter Name="idRecipe" Mode="In" Type="Int32" />
+      <Parameter Name="recipeName" Mode="In" Type="String" />
+      <Parameter Name="recCategoryId" Mode="In" Type="Byte" />
+      <Parameter Name="recFoodStyleId" Mode="In" Type="Byte" />
+      <Parameter Name="recDifficultyLevelId" Mode="In" Type="Byte" />
+      <Parameter Name="recMealCostId" Mode="In" Type="Byte" />
+      <Parameter Name="preparationTime" Mode="In" Type="Int32" />
+      <Parameter Name="cookTime" Mode="In" Type="Int32" />
+      <Parameter Name="doses" Mode="In" Type="Int32" />
+      <Parameter Name="evaluation" Mode="In" Type="Decimal" />
+      <Parameter Name="statusId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spSelUnit" ReturnType="Collection(SabeTaoBemModel.spSelUnit_Result)">
+      <Parameter Name="idUnit" Mode="In" Type="Byte" />
+      <Parameter Name="unitName" Mode="In" Type="String" />
+      <Parameter Name="unitcategoryid" Mode="In" Type="Byte" />
+      <Parameter Name="unitsystemid" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spSelUsers" ReturnType="Collection(SabeTaoBemModel.spSelUsers_Result)">
+      <Parameter Name="idUser" Mode="In" Type="Int32" />
+      <Parameter Name="LoginId" Mode="In" Type="Int32" />
+      <Parameter Name="StatusId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spUpComments">
+      <Parameter Name="idComment" Mode="In" Type="Int32" />
+      <Parameter Name="comment" Mode="In" Type="String" />
+      <Parameter Name="recipeId" Mode="In" Type="Int32" />
+      <Parameter Name="userId" Mode="In" Type="Int32" />
+      <Parameter Name="statusId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spUpIngredient">
+      <Parameter Name="idIngredient" Mode="In" Type="Int32" />
+      <Parameter Name="ingredientName" Mode="In" Type="String" />
+      <Parameter Name="ingCategoryID" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spUpLogin">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spUpRecipeIng">
+      <Parameter Name="idRecipe" Mode="In" Type="Int32" />
+      <Parameter Name="idIngredient" Mode="In" Type="Int32" />
+      <Parameter Name="unitId" Mode="In" Type="Byte" />
+      <Parameter Name="quantity" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="spUpRecipes">
+      <Parameter Name="idRecipe" Mode="In" Type="Int32" />
+      <Parameter Name="recipeName" Mode="In" Type="String" />
+      <Parameter Name="recCategoryId" Mode="In" Type="Byte" />
+      <Parameter Name="recFoodStyleId" Mode="In" Type="Byte" />
+      <Parameter Name="recDifficultyLevelId" Mode="In" Type="Byte" />
+      <Parameter Name="recMealCostId" Mode="In" Type="Byte" />
+      <Parameter Name="preparationTime" Mode="In" Type="Int32" />
+      <Parameter Name="cookTime" Mode="In" Type="Int32" />
+      <Parameter Name="doses" Mode="In" Type="Int32" />
+      <Parameter Name="evaluation" Mode="In" Type="Decimal" />
+      <Parameter Name="description" Mode="In" Type="String" />
+      <Parameter Name="picture" Mode="In" Type="Binary" />
+      <Parameter Name="statusId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spUpUnits">
+      <Parameter Name="idUnit" Mode="In" Type="Byte" />
+      <Parameter Name="unitName" Mode="In" Type="String" />
+      <Parameter Name="unitCategoryId" Mode="In" Type="Byte" />
+      <Parameter Name="unitSystemId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spUpUsers">
+      <Parameter Name="idUser" Mode="In" Type="Int32" />
+      <Parameter Name="firstName" Mode="In" Type="String" />
+      <Parameter Name="lastName" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="userFunctionID" Mode="In" Type="Byte" />
+      <Parameter Name="statusID" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="fnSelUsers" EntitySet="tbUsers" ReturnType="Collection(SabeTaoBemModel.tbUsers)">
+      <Parameter Name="idUser" Mode="In" Type="Int32" />
+      <Parameter Name="LoginId" Mode="In" Type="Int32" />
+      <Parameter Name="StatusId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spSelCommentDetail" ReturnType="Collection(SabeTaoBemModel.spSelCommentDetail_Result)">
+      <Parameter Name="idComment" Mode="In" Type="Int32" />
+      <Parameter Name="recipeId" Mode="In" Type="Int32" />
+      <Parameter Name="userId" Mode="In" Type="Int32" />
+      <Parameter Name="statusId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spSelIngredientDetail" ReturnType="Collection(SabeTaoBemModel.spSelIngredientDetail_Result)">
+      <Parameter Name="idIngredient" Mode="In" Type="Int32" />
+      <Parameter Name="ingredientName" Mode="In" Type="String" />
+      <Parameter Name="idIngCategory" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spSelRecipeByIng" ReturnType="Collection(SabeTaoBemModel.spSelRecipeByIng_Result)">
+      <Parameter Name="idIngredient" Mode="In" Type="Int32" />
+      <Parameter Name="ingredientName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spSelRecipeDetails" ReturnType="Collection(SabeTaoBemModel.spSelRecipeDetails_Result)">
+      <Parameter Name="idRecipe" Mode="In" Type="Int32" />
+      <Parameter Name="recipeName" Mode="In" Type="String" />
+      <Parameter Name="recCategoryId" Mode="In" Type="Byte" />
+      <Parameter Name="recFoodStyleId" Mode="In" Type="Byte" />
+      <Parameter Name="recDifficultyLevelId" Mode="In" Type="Byte" />
+      <Parameter Name="recMealCostId" Mode="In" Type="Byte" />
+      <Parameter Name="preparationTime" Mode="In" Type="Int32" />
+      <Parameter Name="cookTime" Mode="In" Type="Int32" />
+      <Parameter Name="doses" Mode="In" Type="Int32" />
+      <Parameter Name="evaluation" Mode="In" Type="Decimal" />
+      <Parameter Name="statusId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spSelRecipeIngredientDetails" ReturnType="Collection(SabeTaoBemModel.spSelRecipeIngredientDetails_Result)">
+      <Parameter Name="idRecipe" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spSelUnitsDetails" ReturnType="Collection(SabeTaoBemModel.spSelUnitsDetails_Result)">
+      <Parameter Name="idUnit" Mode="In" Type="Byte" />
+      <Parameter Name="unitName" Mode="In" Type="String" />
+      <Parameter Name="unitcategoryid" Mode="In" Type="Byte" />
+      <Parameter Name="unitsystemid" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spSelUsersDetails" ReturnType="Collection(SabeTaoBemModel.spSelUsersDetails_Result)">
+      <Parameter Name="idUser" Mode="In" Type="Int32" />
+      <Parameter Name="LoginId" Mode="In" Type="Int32" />
+      <Parameter Name="StatusId" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spSelUnitCategory" ReturnType="Collection(SabeTaoBemModel.spSelUnitCategory_Result)">
+      <Parameter Name="id" Mode="In" Type="Byte" />
+      <Parameter Name="unitCategory" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spSelUnitSystem" ReturnType="Collection(SabeTaoBemModel.spSelUnitSystem_Result)">
+      <Parameter Name="id" Mode="In" Type="Byte" />
+      <Parameter Name="unitSystem" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="spSelComment_Result">
+    <Property Type="Int32" Name="IdComment" Nullable="false" />
+    <Property Type="String" Name="Comment" Nullable="false" MaxLength="4000" />
+    <Property Type="Int32" Name="RecipeId" Nullable="false" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="DateTime" Name="CommentDate" Nullable="true" Precision="23" />
+    <Property Type="Byte" Name="StatusID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spSelIngredient_Result">
+    <Property Type="Int32" Name="IdIngredient" Nullable="false" />
+    <Property Type="String" Name="IngredientName" Nullable="false" MaxLength="20" />
+    <Property Type="Byte" Name="IngCategoryId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spSelIngredientCategory_Result">
+    <Property Type="Byte" Name="idIngCategory" Nullable="false" />
+    <Property Type="String" Name="Category" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spSelLogin_Result">
+    <Property Type="Int32" Name="IdLogin" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="spSelRecipeIng_Result">
+    <Property Type="Int32" Name="IdRecipe" Nullable="false" />
+    <Property Type="Int32" Name="IdIngredient" Nullable="false" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="6" Scale="2" />
+    <Property Type="Byte" Name="UnitId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spSelRecipes_Result">
+    <Property Type="Int32" Name="IdRecipe" Nullable="false" />
+    <Property Type="String" Name="RecipeName" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="Byte" Name="RecCategoryId" Nullable="false" />
+    <Property Type="Byte" Name="RecFoodStyleId" Nullable="false" />
+    <Property Type="Byte" Name="RecDifficultyLevelId" Nullable="false" />
+    <Property Type="Byte" Name="RecMealCostId" Nullable="false" />
+    <Property Type="Int32" Name="PreparationTime" Nullable="false" />
+    <Property Type="Int32" Name="CookTime" Nullable="false" />
+    <Property Type="Int32" Name="Doses" Nullable="false" />
+    <Property Type="Decimal" Name="Evaluation" Nullable="true" Precision="2" Scale="1" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="4000" />
+    <Property Type="Binary" Name="Picture" Nullable="true" />
+    <Property Type="Byte" Name="idStatus" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spSelUnit_Result">
+    <Property Type="Byte" Name="IdUnit" Nullable="false" />
+    <Property Type="String" Name="UnitName" Nullable="false" MaxLength="20" />
+    <Property Type="Byte" Name="UnitCategoryId" Nullable="false" />
+    <Property Type="Byte" Name="UnitSystemId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spSelUsers_Result">
+    <Property Type="Int32" Name="IdUser" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="RegistrationDate" Nullable="true" Precision="23" />
+    <Property Type="Byte" Name="UserFunctionId" Nullable="false" />
+    <Property Type="Int32" Name="LoginId" Nullable="false" />
+    <Property Type="Byte" Name="StatusId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spSelIngredientDetail_Result">
+    <Property Type="Int32" Name="idIngredient" Nullable="false" />
+    <Property Type="String" Name="IngredientName" Nullable="false" MaxLength="20" />
+    <Property Type="Byte" Name="ingCategoryId" Nullable="false" />
+    <Property Type="String" Name="category" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spSelRecipeByIng_Result">
+    <Property Type="Int32" Name="IdIngredient" Nullable="false" />
+    <Property Type="String" Name="IngredientName" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="idRecipe" Nullable="false" />
+    <Property Type="String" Name="RecipeName" Nullable="false" MaxLength="250" />
+    <Property Type="Byte" Name="RecCategoryId" Nullable="false" />
+    <Property Type="String" Name="Category" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="userid" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="spSelRecipeIngredientDetails_Result">
+    <Property Type="Int32" Name="idrecipe" Nullable="false" />
+    <Property Type="String" Name="RecipeName" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="IdIngredient" Nullable="false" />
+    <Property Type="String" Name="IngredientName" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="6" Scale="2" />
+    <Property Type="Byte" Name="UnitId" Nullable="false" />
+    <Property Type="String" Name="UnitName" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="spSelUnitsDetails_Result">
+    <Property Type="Byte" Name="IdUnit" Nullable="false" />
+    <Property Type="String" Name="UnitName" Nullable="false" MaxLength="20" />
+    <Property Type="Byte" Name="UnitCategoryId" Nullable="false" />
+    <Property Type="String" Name="Category" Nullable="true" MaxLength="20" />
+    <Property Type="Byte" Name="UnitSystemId" Nullable="false" />
+    <Property Type="String" Name="System" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="spSelUsersDetails_Result">
+    <Property Type="Int32" Name="iduser" Nullable="false" />
+    <Property Type="String" Name="firstname" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="lastname" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="registrationDate" Nullable="true" Precision="23" />
+    <Property Type="Byte" Name="userfunctionid" Nullable="false" />
+    <Property Type="String" Name="userfunction" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="loginid" Nullable="false" />
+    <Property Type="String" Name="username" Nullable="false" MaxLength="20" />
+    <Property Type="Byte" Name="StatusId" Nullable="false" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="spSelCommentDetail_Result">
+    <Property Type="Int32" Name="idComment" Nullable="false" />
+    <Property Type="String" Name="Comment" Nullable="false" MaxLength="4000" />
+    <Property Type="Int32" Name="RecipeId" Nullable="false" />
+    <Property Type="String" Name="RecipeName" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="Userid" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="commentdate" Nullable="true" Precision="23" />
+    <Property Type="Byte" Name="statusid" Nullable="false" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="spSelRecipeDetails_Result">
+    <Property Type="Int32" Name="idrecipe" Nullable="false" />
+    <Property Type="String" Name="RecipeName" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="userid" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+    <Property Type="Byte" Name="RecCategoryId" Nullable="false" />
+    <Property Type="String" Name="Category" Nullable="false" MaxLength="50" />
+    <Property Type="Byte" Name="RecFoodStyleId" Nullable="false" />
+    <Property Type="String" Name="FoodStyle" Nullable="false" MaxLength="50" />
+    <Property Type="Byte" Name="RecDifficultyLevelId" Nullable="false" />
+    <Property Type="String" Name="DifficultyLevel" Nullable="false" MaxLength="20" />
+    <Property Type="Byte" Name="RecMealCostId" Nullable="false" />
+    <Property Type="String" Name="MealCost" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="PreparationTime" Nullable="false" />
+    <Property Type="Int32" Name="CookTime" Nullable="false" />
+    <Property Type="Int32" Name="Doses" Nullable="false" />
+    <Property Type="Decimal" Name="Evaluation" Nullable="true" Precision="2" Scale="1" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="4000" />
+    <Property Type="Binary" Name="Picture" Nullable="true" />
+    <Property Type="Byte" Name="idStatus" Nullable="false" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="spSelUnitCategory_Result">
+    <Property Type="Byte" Name="IdUnitCategory" Nullable="false" />
+    <Property Type="String" Name="Category" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="spSelUnitSystem_Result">
+    <Property Type="Byte" Name="IdUnitSystem" Nullable="false" />
+    <Property Type="String" Name="System" Nullable="true" MaxLength="20" />
+  </ComplexType>
+</Schema>

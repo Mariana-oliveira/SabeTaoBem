@@ -1,0 +1,96 @@
+﻿@model SabeTaoBem_MVC.Models.Users.UserDetail
+@{
+    ViewBag.Title = "RegisterUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="center">
+    <h1>Criar Nova Conta</h1>
+
+    <div class="center-formLog">
+        @using (Html.BeginForm("RegisterForm", "UserRegistration", FormMethod.Post))
+        {
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.firstname)
+                </td>
+                <td AssociatedControlID="Username">
+                    @Html.TextBoxFor(model => model.firstname)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color:red">
+                    @Html.ValidationMessageFor(model => model.firstname )
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.lastname)
+                </td>
+                <td AssociatedControlID="Username">
+                    @Html.TextBoxFor(model => model.lastname)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color:red">
+                    @Html.ValidationMessageFor(model => model.lastname)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.email)
+                </td>
+                <td AssociatedControlID="Username">
+                    @Html.TextBoxFor(model => model.email)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2 style="color:red">
+                    @Html.ValidationMessageFor(model => model.email)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.username)
+                </td>
+                <td AssociatedControlID="Username">
+                    @Html.TextBoxFor(model => model.username)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color:red">
+                    @Html.ValidationMessageFor(model => model.username)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.password)
+                </td>
+                <td AssociatedControlID="Username">
+                    @Html.PasswordFor(model => model.password)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color:red">
+                    @Html.ValidationMessageFor(model => model.password)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="field-validation-error">@Html.DisplayFor(model => model.UserRegErrorMessage)</label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Criar" class="button"/>
+                </td>
+            </tr>
+        </table>
+        }
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    </div>
+</div>

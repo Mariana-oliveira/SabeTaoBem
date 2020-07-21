@@ -1,0 +1,78 @@
+﻿@model SabeTaoBem_MVC.Models.Recipes.RecipeDetail
+
+@{
+    ViewBag.Title = "CreateRecipe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="center">
+    <h1>Criar Receita</h1>
+    <div class="center-formRec">
+        @using (Html.BeginForm("CreateRecipeForm", "Recipes", FormMethod.Post))
+        {
+
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.RecipeName)
+                </td>
+                <td AssociatedControlID="Username">
+                    @Html.TextBoxFor(model => model.RecipeName)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color:red">
+                    @Html.ValidationMessageFor(model => model.RecipeName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.PreparationTime)
+                </td>
+                <td AssociatedControlID="Username">
+                    @Html.TextBoxFor(model => model.PreparationTime)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color:red">
+                    @Html.ValidationMessageFor(model => model.PreparationTime)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.CookTime)
+                </td>
+                <td AssociatedControlID="Username">
+                    @Html.TextBoxFor(model => model.CookTime)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color:red">
+                    @Html.ValidationMessageFor(model => model.CookTime)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Doses)
+                </td>
+                <td AssociatedControlID="Username">
+                    @Html.TextBoxFor(model => model.Doses)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="color:red">
+                    @Html.ValidationMessageFor(model => model.Doses)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Criar" class="button" />
+                </td>
+            </tr>
+
+
+        </table>
+        }
+    </div>
+</div>

@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SabeTaoBemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbComments">
+    <Key>
+      <PropertyRef Name="IdComment" />
+    </Key>
+    <Property Name="IdComment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="RecipeId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CommentDate" Type="datetime" />
+    <Property Name="StatusID" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbIngredientCategory">
+    <Key>
+      <PropertyRef Name="IdIngCategory" />
+    </Key>
+    <Property Name="IdIngCategory" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbIngredients">
+    <Key>
+      <PropertyRef Name="IdIngredient" />
+    </Key>
+    <Property Name="IdIngredient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IngredientName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IngCategoryId" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbLogin">
+    <Key>
+      <PropertyRef Name="IdLogin" />
+    </Key>
+    <Property Name="IdLogin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbRecipeCategory">
+    <Key>
+      <PropertyRef Name="IdRecCategory" />
+    </Key>
+    <Property Name="IdRecCategory" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbRecipeDifficultyLevel">
+    <Key>
+      <PropertyRef Name="IdRecDiffLevel" />
+    </Key>
+    <Property Name="IdRecDiffLevel" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DifficultyLevel" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbRecipeFoodStyle">
+    <Key>
+      <PropertyRef Name="IdRecFoodStyle" />
+    </Key>
+    <Property Name="IdRecFoodStyle" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodStyle" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbRecipeIngredient">
+    <Key>
+      <PropertyRef Name="IdRecipe" />
+      <PropertyRef Name="IdIngredient" />
+    </Key>
+    <Property Name="IdRecipe" Type="int" Nullable="false" />
+    <Property Name="IdIngredient" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="UnitId" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbRecipeMealCost">
+    <Key>
+      <PropertyRef Name="IdRecMealCost" />
+    </Key>
+    <Property Name="IdRecMealCost" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MealCost" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbRecipes">
+    <Key>
+      <PropertyRef Name="IdRecipe" />
+    </Key>
+    <Property Name="IdRecipe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RecipeName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="RecCategoryId" Type="tinyint" Nullable="false" />
+    <Property Name="RecFoodStyleId" Type="tinyint" Nullable="false" />
+    <Property Name="RecDifficultyLevelId" Type="tinyint" Nullable="false" />
+    <Property Name="RecMealCostId" Type="tinyint" Nullable="false" />
+    <Property Name="PreparationTime" Type="int" Nullable="false" />
+    <Property Name="CookTime" Type="int" Nullable="false" />
+    <Property Name="Doses" Type="int" Nullable="false" />
+    <Property Name="Evaluation" Type="decimal" Precision="2" Scale="1" />
+    <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Picture" Type="varbinary(max)" />
+    <Property Name="idStatus" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbStatus">
+    <Key>
+      <PropertyRef Name="IdStatus" />
+    </Key>
+    <Property Name="IdStatus" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbUnitCategory">
+    <Key>
+      <PropertyRef Name="IdUnitCategory" />
+    </Key>
+    <Property Name="IdUnitCategory" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tbUnits">
+    <Key>
+      <PropertyRef Name="IdUnit" />
+    </Key>
+    <Property Name="IdUnit" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UnitName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UnitCategoryId" Type="tinyint" Nullable="false" />
+    <Property Name="UnitSystemId" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbUnitSystem">
+    <Key>
+      <PropertyRef Name="IdUnitSystem" />
+    </Key>
+    <Property Name="IdUnitSystem" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="System" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tbUserFunction">
+    <Key>
+      <PropertyRef Name="IdUserFunction" />
+    </Key>
+    <Property Name="IdUserFunction" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserFunction" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbUsers">
+    <Key>
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RegistrationDate" Type="datetime" />
+    <Property Name="UserFunctionId" Type="tinyint" Nullable="false" />
+    <Property Name="LoginId" Type="int" Nullable="false" />
+    <Property Name="StatusId" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Ing_IngQuantityUnit">
+    <End Role="tbIngredients" Type="Self.tbIngredients" Multiplicity="1" />
+    <End Role="tbRecipeIngredient" Type="Self.tbRecipeIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbIngredients">
+        <PropertyRef Name="IdIngredient" />
+      </Principal>
+      <Dependent Role="tbRecipeIngredient">
+        <PropertyRef Name="IdIngredient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IngCategory_Ingredient">
+    <End Role="tbIngredientCategory" Type="Self.tbIngredientCategory" Multiplicity="1" />
+    <End Role="tbIngredients" Type="Self.tbIngredients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbIngredientCategory">
+        <PropertyRef Name="IdIngCategory" />
+      </Principal>
+      <Dependent Role="tbIngredients">
+        <PropertyRef Name="IngCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Login_Users">
+    <End Role="tbLogin" Type="Self.tbLogin" Multiplicity="1" />
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbLogin">
+        <PropertyRef Name="IdLogin" />
+      </Principal>
+      <Dependent Role="tbUsers">
+        <PropertyRef Name="LoginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecCategory_Recipe">
+    <End Role="tbRecipeCategory" Type="Self.tbRecipeCategory" Multiplicity="1" />
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRecipeCategory">
+        <PropertyRef Name="IdRecCategory" />
+      </Principal>
+      <Dependent Role="tbRecipes">
+        <PropertyRef Name="RecCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecDifficultyLevel_Recipe">
+    <End Role="tbRecipeDifficultyLevel" Type="Self.tbRecipeDifficultyLevel" Multiplicity="1" />
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRecipeDifficultyLevel">
+        <PropertyRef Name="IdRecDiffLevel" />
+      </Principal>
+      <Dependent Role="tbRecipes">
+        <PropertyRef Name="RecDifficultyLevelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecFoodStyle_Recipe">
+    <End Role="tbRecipeFoodStyle" Type="Self.tbRecipeFoodStyle" Multiplicity="1" />
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRecipeFoodStyle">
+        <PropertyRef Name="IdRecFoodStyle" />
+      </Principal>
+      <Dependent Role="tbRecipes">
+        <PropertyRef Name="RecFoodStyleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe">
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="1" />
+    <End Role="tbRecipeIngredient" Type="Self.tbRecipeIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRecipes">
+        <PropertyRef Name="IdRecipe" />
+      </Principal>
+      <Dependent Role="tbRecipeIngredient">
+        <PropertyRef Name="IdRecipe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipe_Comment">
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="1" />
+    <End Role="tbComments" Type="Self.tbComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRecipes">
+        <PropertyRef Name="IdRecipe" />
+      </Principal>
+      <Dependent Role="tbComments">
+        <PropertyRef Name="RecipeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecMealCost_Recipe">
+    <End Role="tbRecipeMealCost" Type="Self.tbRecipeMealCost" Multiplicity="1" />
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRecipeMealCost">
+        <PropertyRef Name="IdRecMealCost" />
+      </Principal>
+      <Dependent Role="tbRecipes">
+        <PropertyRef Name="RecMealCostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Comment">
+    <End Role="tbStatus" Type="Self.tbStatus" Multiplicity="1" />
+    <End Role="tbComments" Type="Self.tbComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbStatus">
+        <PropertyRef Name="IdStatus" />
+      </Principal>
+      <Dependent Role="tbComments">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Recipe">
+    <End Role="tbStatus" Type="Self.tbStatus" Multiplicity="1" />
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbStatus">
+        <PropertyRef Name="IdStatus" />
+      </Principal>
+      <Dependent Role="tbRecipes">
+        <PropertyRef Name="idStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Users">
+    <End Role="tbStatus" Type="Self.tbStatus" Multiplicity="1" />
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbStatus">
+        <PropertyRef Name="IdStatus" />
+      </Principal>
+      <Dependent Role="tbUsers">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Unit_IngQuantityUnit">
+    <End Role="tbUnits" Type="Self.tbUnits" Multiplicity="1" />
+    <End Role="tbRecipeIngredient" Type="Self.tbRecipeIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUnits">
+        <PropertyRef Name="IdUnit" />
+      </Principal>
+      <Dependent Role="tbRecipeIngredient">
+        <PropertyRef Name="UnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UnitCategory_Unit">
+    <End Role="tbUnitCategory" Type="Self.tbUnitCategory" Multiplicity="1" />
+    <End Role="tbUnits" Type="Self.tbUnits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUnitCategory">
+        <PropertyRef Name="IdUnitCategory" />
+      </Principal>
+      <Dependent Role="tbUnits">
+        <PropertyRef Name="UnitCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UnitSystem_Unit">
+    <End Role="tbUnitSystem" Type="Self.tbUnitSystem" Multiplicity="1" />
+    <End Role="tbUnits" Type="Self.tbUnits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUnitSystem">
+        <PropertyRef Name="IdUnitSystem" />
+      </Principal>
+      <Dependent Role="tbUnits">
+        <PropertyRef Name="UnitSystemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Comment">
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="1" />
+    <End Role="tbComments" Type="Self.tbComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsers">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="tbComments">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserFunction_Users">
+    <End Role="tbUserFunction" Type="Self.tbUserFunction" Multiplicity="1" />
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUserFunction">
+        <PropertyRef Name="IdUserFunction" />
+      </Principal>
+      <Dependent Role="tbUsers">
+        <PropertyRef Name="UserFunctionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRec_Recipe">
+    <End Role="tbUsers" Type="Self.tbUsers" Multiplicity="1" />
+    <End Role="tbRecipes" Type="Self.tbRecipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsers">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="tbRecipes">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="spDelComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idComment" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDelIngredient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idIngredient" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDelLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDelRecipe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRecipe" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDelRecipeIng" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRecipe" Type="int" Mode="In" />
+    <Parameter Name="idIngredient" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDelUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUnit" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spDelUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUser" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="comment" Type="nvarchar" Mode="In" />
+    <Parameter Name="recipeId" Type="int" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+    <Parameter Name="statusID" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spInsIngredient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ingredientName" Type="nvarchar" Mode="In" />
+    <Parameter Name="categoryId" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spInsLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spInsRecipeIng" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRecipe" Type="int" Mode="In" />
+    <Parameter Name="idIngredient" Type="int" Mode="In" />
+    <Parameter Name="unitId" Type="tinyint" Mode="In" />
+    <Parameter Name="quantity" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="spInsRecipes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="recipeName" Type="nvarchar" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+    <Parameter Name="recCategoryId" Type="tinyint" Mode="In" />
+    <Parameter Name="recFoodStyleId" Type="tinyint" Mode="In" />
+    <Parameter Name="recDifficultyLevelId" Type="tinyint" Mode="In" />
+    <Parameter Name="recMealCostId" Type="tinyint" Mode="In" />
+    <Parameter Name="preparationTime" Type="int" Mode="In" />
+    <Parameter Name="cookTime" Type="int" Mode="In" />
+    <Parameter Name="doses" Type="int" Mode="In" />
+    <Parameter Name="description" Type="nvarchar" Mode="In" />
+    <Parameter Name="statusId" Type="tinyint" Mode="In" />
+    <Parameter Name="evaluation" Type="decimal" Mode="In" />
+    <Parameter Name="picture" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="spInsUnits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="unitName" Type="nvarchar" Mode="In" />
+    <Parameter Name="unitCategoryId" Type="tinyint" Mode="In" />
+    <Parameter Name="unitSystemId" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spInsUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="userFunctionId" Type="tinyint" Mode="In" />
+    <Parameter Name="statusId" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spSelComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idComment" Type="int" Mode="In" />
+    <Parameter Name="recipeId" Type="int" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+    <Parameter Name="statusId" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spSelCommentDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idComment" Type="int" Mode="In" />
+    <Parameter Name="recipeId" Type="int" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+    <Parameter Name="statusId" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spSelIngredient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idIngredient" Type="int" Mode="In" />
+    <Parameter Name="ingredientName" Type="nvarchar" Mode="In" />
+    <Parameter Name="idIngCategory" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spSelIngredientCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="tinyint" Mode="In" />
+    <Parameter Name="ingCategory" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spSelIngredientDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idIngredient" Type="int" Mode="In" />
+    <Parameter Name="ingredientName" Type="nvarchar" Mode="In" />
+    <Parameter Name="idIngCategory" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spSelLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idLogin" Type="int" Mode="In" />
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spSelRecipeByIng" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idIngredient" Type="int" Mode="In" />
+    <Parameter Name="ingredientName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spSelRecipeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRecipe" Type="int" Mode="In" />
+    <Parameter Name="recipeName" Type="nvarchar" Mode="In" />
+    <Parameter Name="recCategoryId" Type="tinyint" Mode="In" />
+    <Parameter Name="recFoodStyleId" Type="tinyint" Mode="In" />
+    <Parameter Name="recDifficultyLevelId" Type="tinyint" Mode="In" />
+    <Parameter Name="recMealCostId" Type="tinyint" Mode="In" />
+    <Parameter Name="preparationTime" Type="int" Mode="In" />
+    <Parameter Name="cookTime" Type="int" Mode="In" />
+    <Parameter Name="doses" Type="int" Mode="In" />
+    <Parameter Name="evaluation" Type="decimal" Mode="In" />
+    <Parameter Name="statusId" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spSelRecipeIng" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRecipe" Type="int" Mode="In" />
+    <Parameter Name="idIngredient" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spSelRecipeIngredientDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRecipe" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spSelRecipes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRecipe" Type="int" Mode="In" />
+    <Parameter Name="recipeName" Type="nvarchar" Mode="In" />
+    <Parameter Name="recCategoryId" Type="tinyint" Mode="In" />
+    <Parameter Name="recFoodStyleId" Type="tinyint" Mode="In" />
+    <Parameter Name="recDifficultyLevelId" Type="tinyint" Mode="In" />
+    <Parameter Name="recMealCostId" Type="tinyint" Mode="In" />
+    <Parameter Name="preparationTime" Type="int" Mode="In" />
+    <Parameter Name="cookTime" Type="int" Mode="In" />
+    <Parameter Name="doses" Type="int" Mode="In" />
+    <Parameter Name="evaluation" Type="decimal" Mode="In" />
+    <Parameter Name="statusId" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spSelUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUnit" Type="tinyint" Mode="In" />
+    <Parameter Name="unitName" Type="nvarchar" Mode="In" />
+    <Parameter Name="unitcategoryid" Type="tinyint" Mode="In" />
+    <Parameter Name="unitsystemid" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spSelUnitCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="tinyint" Mode="In" />
+    <Parameter Name="unitCategory" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spSelUnitsDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUnit" Type="tinyint" Mode="In" />
+    <Parameter Name="unitName" Type="nvarchar" Mode="In" />
+    <Parameter Name="unitcategoryid" Type="tinyint" Mode="In" />
+    <Parameter Name="unitsystemid" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spSelUnitSystem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="tinyint" Mode="In" />
+    <Parameter Name="unitSystem" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spSelUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUser" Type="int" Mode="In" />
+    <Parameter Name="LoginId" Type="int" Mode="In" />
+    <Parameter Name="StatusId" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spSelUsersDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUser" Type="int" Mode="In" />
+    <Parameter Name="LoginId" Type="int" Mode="In" />
+    <Parameter Name="StatusId" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spUpComments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idComment" Type="int" Mode="In" />
+    <Parameter Name="comment" Type="nvarchar" Mode="In" />
+    <Parameter Name="recipeId" Type="int" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+    <Parameter Name="statusId" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spUpIngredient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idIngredient" Type="int" Mode="In" />
+    <Parameter Name="ingredientName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ingCategoryID" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spUpLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spUpRecipeIng" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRecipe" Type="int" Mode="In" />
+    <Parameter Name="idIngredient" Type="int" Mode="In" />
+    <Parameter Name="unitId" Type="tinyint" Mode="In" />
+    <Parameter Name="quantity" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="spUpRecipes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRecipe" Type="int" Mode="In" />
+    <Parameter Name="recipeName" Type="nvarchar" Mode="In" />
+    <Parameter Name="recCategoryId" Type="tinyint" Mode="In" />
+    <Parameter Name="recFoodStyleId" Type="tinyint" Mode="In" />
+    <Parameter Name="recDifficultyLevelId" Type="tinyint" Mode="In" />
+    <Parameter Name="recMealCostId" Type="tinyint" Mode="In" />
+    <Parameter Name="preparationTime" Type="int" Mode="In" />
+    <Parameter Name="cookTime" Type="int" Mode="In" />
+    <Parameter Name="doses" Type="int" Mode="In" />
+    <Parameter Name="evaluation" Type="decimal" Mode="In" />
+    <Parameter Name="description" Type="nvarchar" Mode="In" />
+    <Parameter Name="picture" Type="varbinary(max)" Mode="In" />
+    <Parameter Name="statusId" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spUpUnits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUnit" Type="tinyint" Mode="In" />
+    <Parameter Name="unitName" Type="nvarchar" Mode="In" />
+    <Parameter Name="unitCategoryId" Type="tinyint" Mode="In" />
+    <Parameter Name="unitSystemId" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="spUpUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUser" Type="int" Mode="In" />
+    <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="userFunctionID" Type="tinyint" Mode="In" />
+    <Parameter Name="statusID" Type="tinyint" Mode="In" />
+  </Function>
+  <EntityContainer Name="SabeTaoBemModelStoreContainer">
+    <EntitySet Name="tbComments" EntityType="Self.tbComments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbIngredientCategory" EntityType="Self.tbIngredientCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbIngredients" EntityType="Self.tbIngredients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbLogin" EntityType="Self.tbLogin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbRecipeCategory" EntityType="Self.tbRecipeCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbRecipeDifficultyLevel" EntityType="Self.tbRecipeDifficultyLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbRecipeFoodStyle" EntityType="Self.tbRecipeFoodStyle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbRecipeIngredient" EntityType="Self.tbRecipeIngredient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbRecipeMealCost" EntityType="Self.tbRecipeMealCost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbRecipes" EntityType="Self.tbRecipes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbStatus" EntityType="Self.tbStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbUnitCategory" EntityType="Self.tbUnitCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbUnits" EntityType="Self.tbUnits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbUnitSystem" EntityType="Self.tbUnitSystem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbUserFunction" EntityType="Self.tbUserFunction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbUsers" EntityType="Self.tbUsers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Ing_IngQuantityUnit" Association="Self.FK_Ing_IngQuantityUnit">
+      <End Role="tbIngredients" EntitySet="tbIngredients" />
+      <End Role="tbRecipeIngredient" EntitySet="tbRecipeIngredient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IngCategory_Ingredient" Association="Self.FK_IngCategory_Ingredient">
+      <End Role="tbIngredientCategory" EntitySet="tbIngredientCategory" />
+      <End Role="tbIngredients" EntitySet="tbIngredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Login_Users" Association="Self.FK_Login_Users">
+      <End Role="tbLogin" EntitySet="tbLogin" />
+      <End Role="tbUsers" EntitySet="tbUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecCategory_Recipe" Association="Self.FK_RecCategory_Recipe">
+      <End Role="tbRecipeCategory" EntitySet="tbRecipeCategory" />
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecDifficultyLevel_Recipe" Association="Self.FK_RecDifficultyLevel_Recipe">
+      <End Role="tbRecipeDifficultyLevel" EntitySet="tbRecipeDifficultyLevel" />
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecFoodStyle_Recipe" Association="Self.FK_RecFoodStyle_Recipe">
+      <End Role="tbRecipeFoodStyle" EntitySet="tbRecipeFoodStyle" />
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe" Association="Self.FK_Recipe">
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+      <End Role="tbRecipeIngredient" EntitySet="tbRecipeIngredient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipe_Comment" Association="Self.FK_Recipe_Comment">
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+      <End Role="tbComments" EntitySet="tbComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecMealCost_Recipe" Association="Self.FK_RecMealCost_Recipe">
+      <End Role="tbRecipeMealCost" EntitySet="tbRecipeMealCost" />
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Comment" Association="Self.FK_Status_Comment">
+      <End Role="tbStatus" EntitySet="tbStatus" />
+      <End Role="tbComments" EntitySet="tbComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Recipe" Association="Self.FK_Status_Recipe">
+      <End Role="tbStatus" EntitySet="tbStatus" />
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Users" Association="Self.FK_Status_Users">
+      <End Role="tbStatus" EntitySet="tbStatus" />
+      <End Role="tbUsers" EntitySet="tbUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Unit_IngQuantityUnit" Association="Self.FK_Unit_IngQuantityUnit">
+      <End Role="tbUnits" EntitySet="tbUnits" />
+      <End Role="tbRecipeIngredient" EntitySet="tbRecipeIngredient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UnitCategory_Unit" Association="Self.FK_UnitCategory_Unit">
+      <End Role="tbUnitCategory" EntitySet="tbUnitCategory" />
+      <End Role="tbUnits" EntitySet="tbUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UnitSystem_Unit" Association="Self.FK_UnitSystem_Unit">
+      <End Role="tbUnitSystem" EntitySet="tbUnitSystem" />
+      <End Role="tbUnits" EntitySet="tbUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Comment" Association="Self.FK_User_Comment">
+      <End Role="tbUsers" EntitySet="tbUsers" />
+      <End Role="tbComments" EntitySet="tbComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserFunction_Users" Association="Self.FK_UserFunction_Users">
+      <End Role="tbUserFunction" EntitySet="tbUserFunction" />
+      <End Role="tbUsers" EntitySet="tbUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRec_Recipe" Association="Self.FK_UserRec_Recipe">
+      <End Role="tbUsers" EntitySet="tbUsers" />
+      <End Role="tbRecipes" EntitySet="tbRecipes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

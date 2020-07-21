@@ -1,0 +1,57 @@
+﻿@model SabeTaoBem_MVC.Models.Login.Login
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="center">
+    <h1>Login</h1>
+
+    <div class="center-formLog">
+        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Username)
+                    </td>
+                    <td AssociatedControlID="Username">
+                        @Html.TextBoxFor(model => model.Username)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="color:red">
+                        @Html.ValidationMessageFor(model => model.Username)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Password)
+                    </td>
+                    <td AssociatedControlID="Username">
+                        @Html.PasswordFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="color:red">
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="color:red">
+                        <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Login" class="button"/>
+                    </td>
+                </tr>
+            </table>
+        }
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    </div>
+</div>

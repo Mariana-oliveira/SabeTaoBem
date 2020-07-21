@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SabeTaoBemModelStoreContainer" CdmEntityContainer="SabeTaoBemEntities">
+    <EntitySetMapping Name="tbComments">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbComments">
+        <MappingFragment StoreEntitySet="tbComments">
+          <ScalarProperty Name="IdComment" ColumnName="IdComment" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbIngredientCategory">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbIngredientCategory">
+        <MappingFragment StoreEntitySet="tbIngredientCategory">
+          <ScalarProperty Name="IdIngCategory" ColumnName="IdIngCategory" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbIngredients">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbIngredients">
+        <MappingFragment StoreEntitySet="tbIngredients">
+          <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+          <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+          <ScalarProperty Name="IngCategoryId" ColumnName="IngCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbLogin">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbLogin">
+        <MappingFragment StoreEntitySet="tbLogin">
+          <ScalarProperty Name="IdLogin" ColumnName="IdLogin" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbRecipeCategory">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbRecipeCategory">
+        <MappingFragment StoreEntitySet="tbRecipeCategory">
+          <ScalarProperty Name="IdRecCategory" ColumnName="IdRecCategory" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbRecipeDifficultyLevel">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbRecipeDifficultyLevel">
+        <MappingFragment StoreEntitySet="tbRecipeDifficultyLevel">
+          <ScalarProperty Name="IdRecDiffLevel" ColumnName="IdRecDiffLevel" />
+          <ScalarProperty Name="DifficultyLevel" ColumnName="DifficultyLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbRecipeFoodStyle">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbRecipeFoodStyle">
+        <MappingFragment StoreEntitySet="tbRecipeFoodStyle">
+          <ScalarProperty Name="IdRecFoodStyle" ColumnName="IdRecFoodStyle" />
+          <ScalarProperty Name="FoodStyle" ColumnName="FoodStyle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbRecipeIngredient">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbRecipeIngredient">
+        <MappingFragment StoreEntitySet="tbRecipeIngredient">
+          <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+          <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbRecipeMealCost">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbRecipeMealCost">
+        <MappingFragment StoreEntitySet="tbRecipeMealCost">
+          <ScalarProperty Name="IdRecMealCost" ColumnName="IdRecMealCost" />
+          <ScalarProperty Name="MealCost" ColumnName="MealCost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbRecipes">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbRecipes">
+        <MappingFragment StoreEntitySet="tbRecipes">
+          <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+          <ScalarProperty Name="RecipeName" ColumnName="RecipeName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="RecCategoryId" ColumnName="RecCategoryId" />
+          <ScalarProperty Name="RecFoodStyleId" ColumnName="RecFoodStyleId" />
+          <ScalarProperty Name="RecDifficultyLevelId" ColumnName="RecDifficultyLevelId" />
+          <ScalarProperty Name="RecMealCostId" ColumnName="RecMealCostId" />
+          <ScalarProperty Name="PreparationTime" ColumnName="PreparationTime" />
+          <ScalarProperty Name="CookTime" ColumnName="CookTime" />
+          <ScalarProperty Name="Doses" ColumnName="Doses" />
+          <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="idStatus" ColumnName="idStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbStatus">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbStatus">
+        <MappingFragment StoreEntitySet="tbStatus">
+          <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbUnitCategory">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbUnitCategory">
+        <MappingFragment StoreEntitySet="tbUnitCategory">
+          <ScalarProperty Name="IdUnitCategory" ColumnName="IdUnitCategory" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbUnits">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbUnits">
+        <MappingFragment StoreEntitySet="tbUnits">
+          <ScalarProperty Name="IdUnit" ColumnName="IdUnit" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="UnitCategoryId" ColumnName="UnitCategoryId" />
+          <ScalarProperty Name="UnitSystemId" ColumnName="UnitSystemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbUnitSystem">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbUnitSystem">
+        <MappingFragment StoreEntitySet="tbUnitSystem">
+          <ScalarProperty Name="IdUnitSystem" ColumnName="IdUnitSystem" />
+          <ScalarProperty Name="System" ColumnName="System" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbUserFunction">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbUserFunction">
+        <MappingFragment StoreEntitySet="tbUserFunction">
+          <ScalarProperty Name="IdUserFunction" ColumnName="IdUserFunction" />
+          <ScalarProperty Name="UserFunction" ColumnName="UserFunction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbUsers">
+      <EntityTypeMapping TypeName="SabeTaoBemModel.tbUsers">
+        <MappingFragment StoreEntitySet="tbUsers">
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+          <ScalarProperty Name="UserFunctionId" ColumnName="UserFunctionId" />
+          <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spDelComment" FunctionName="SabeTaoBemModel.Store.spDelComment" />
+    <FunctionImportMapping FunctionImportName="spDelIngredient" FunctionName="SabeTaoBemModel.Store.spDelIngredient" />
+    <FunctionImportMapping FunctionImportName="spDelLogin" FunctionName="SabeTaoBemModel.Store.spDelLogin" />
+    <FunctionImportMapping FunctionImportName="spDelRecipe" FunctionName="SabeTaoBemModel.Store.spDelRecipe" />
+    <FunctionImportMapping FunctionImportName="spDelRecipeIng" FunctionName="SabeTaoBemModel.Store.spDelRecipeIng" />
+    <FunctionImportMapping FunctionImportName="spDelUnit" FunctionName="SabeTaoBemModel.Store.spDelUnit" />
+    <FunctionImportMapping FunctionImportName="spDelUser" FunctionName="SabeTaoBemModel.Store.spDelUser" />
+    <FunctionImportMapping FunctionImportName="spInsComment" FunctionName="SabeTaoBemModel.Store.spInsComment" />
+    <FunctionImportMapping FunctionImportName="spInsIngredient" FunctionName="SabeTaoBemModel.Store.spInsIngredient" />
+    <FunctionImportMapping FunctionImportName="spInsLogin" FunctionName="SabeTaoBemModel.Store.spInsLogin" />
+    <FunctionImportMapping FunctionImportName="spInsRecipeIng" FunctionName="SabeTaoBemModel.Store.spInsRecipeIng" />
+    <FunctionImportMapping FunctionImportName="spInsRecipes" FunctionName="SabeTaoBemModel.Store.spInsRecipes" />
+    <FunctionImportMapping FunctionImportName="spInsUnits" FunctionName="SabeTaoBemModel.Store.spInsUnits" />
+    <FunctionImportMapping FunctionImportName="spInsUser" FunctionName="SabeTaoBemModel.Store.spInsUser" />
+    <FunctionImportMapping FunctionImportName="spSelComment" FunctionName="SabeTaoBemModel.Store.spSelComment">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelComment_Result">
+          <ScalarProperty Name="IdComment" ColumnName="IdComment" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelIngredient" FunctionName="SabeTaoBemModel.Store.spSelIngredient">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelIngredient_Result">
+          <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+          <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+          <ScalarProperty Name="IngCategoryId" ColumnName="IngCategoryId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelIngredientCategory" FunctionName="SabeTaoBemModel.Store.spSelIngredientCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelIngredientCategory_Result">
+          <ScalarProperty Name="idIngCategory" ColumnName="idIngCategory" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelLogin" FunctionName="SabeTaoBemModel.Store.spSelLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelLogin_Result">
+          <ScalarProperty Name="IdLogin" ColumnName="IdLogin" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelRecipeIng" FunctionName="SabeTaoBemModel.Store.spSelRecipeIng">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelRecipeIng_Result">
+          <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+          <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelRecipes" FunctionName="SabeTaoBemModel.Store.spSelRecipes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelRecipes_Result">
+          <ScalarProperty Name="IdRecipe" ColumnName="IdRecipe" />
+          <ScalarProperty Name="RecipeName" ColumnName="RecipeName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="RecCategoryId" ColumnName="RecCategoryId" />
+          <ScalarProperty Name="RecFoodStyleId" ColumnName="RecFoodStyleId" />
+          <ScalarProperty Name="RecDifficultyLevelId" ColumnName="RecDifficultyLevelId" />
+          <ScalarProperty Name="RecMealCostId" ColumnName="RecMealCostId" />
+          <ScalarProperty Name="PreparationTime" ColumnName="PreparationTime" />
+          <ScalarProperty Name="CookTime" ColumnName="CookTime" />
+          <ScalarProperty Name="Doses" ColumnName="Doses" />
+          <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="idStatus" ColumnName="idStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelUnit" FunctionName="SabeTaoBemModel.Store.spSelUnit">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelUnit_Result">
+          <ScalarProperty Name="IdUnit" ColumnName="IdUnit" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="UnitCategoryId" ColumnName="UnitCategoryId" />
+          <ScalarProperty Name="UnitSystemId" ColumnName="UnitSystemId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelUsers" FunctionName="SabeTaoBemModel.Store.spSelUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelUsers_Result">
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+          <ScalarProperty Name="UserFunctionId" ColumnName="UserFunctionId" />
+          <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spUpComments" FunctionName="SabeTaoBemModel.Store.spUpComments" />
+    <FunctionImportMapping FunctionImportName="spUpIngredient" FunctionName="SabeTaoBemModel.Store.spUpIngredient" />
+    <FunctionImportMapping FunctionImportName="spUpLogin" FunctionName="SabeTaoBemModel.Store.spUpLogin" />
+    <FunctionImportMapping FunctionImportName="spUpRecipeIng" FunctionName="SabeTaoBemModel.Store.spUpRecipeIng" />
+    <FunctionImportMapping FunctionImportName="spUpRecipes" FunctionName="SabeTaoBemModel.Store.spUpRecipes" />
+    <FunctionImportMapping FunctionImportName="spUpUnits" FunctionName="SabeTaoBemModel.Store.spUpUnits" />
+    <FunctionImportMapping FunctionImportName="spUpUsers" FunctionName="SabeTaoBemModel.Store.spUpUsers" />
+    <FunctionImportMapping FunctionImportName="fnSelUsers" FunctionName="SabeTaoBemModel.Store.spSelUsers" />
+    <FunctionImportMapping FunctionImportName="spSelCommentDetail" FunctionName="SabeTaoBemModel.Store.spSelCommentDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelCommentDetail_Result">
+          <ScalarProperty Name="idComment" ColumnName="idComment" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="RecipeId" ColumnName="RecipeId" />
+          <ScalarProperty Name="RecipeName" ColumnName="RecipeName" />
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="commentdate" ColumnName="commentdate" />
+          <ScalarProperty Name="statusid" ColumnName="statusid" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelIngredientDetail" FunctionName="SabeTaoBemModel.Store.spSelIngredientDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelIngredientDetail_Result">
+          <ScalarProperty Name="idIngredient" ColumnName="idIngredient" />
+          <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+          <ScalarProperty Name="ingCategoryId" ColumnName="ingCategoryId" />
+          <ScalarProperty Name="category" ColumnName="category" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelRecipeByIng" FunctionName="SabeTaoBemModel.Store.spSelRecipeByIng">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelRecipeByIng_Result">
+          <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+          <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+          <ScalarProperty Name="idRecipe" ColumnName="idRecipe" />
+          <ScalarProperty Name="RecipeName" ColumnName="RecipeName" />
+          <ScalarProperty Name="RecCategoryId" ColumnName="RecCategoryId" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelRecipeDetails" FunctionName="SabeTaoBemModel.Store.spSelRecipeDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelRecipeDetails_Result">
+          <ScalarProperty Name="idrecipe" ColumnName="idrecipe" />
+          <ScalarProperty Name="RecipeName" ColumnName="RecipeName" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="RecCategoryId" ColumnName="RecCategoryId" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="RecFoodStyleId" ColumnName="RecFoodStyleId" />
+          <ScalarProperty Name="FoodStyle" ColumnName="FoodStyle" />
+          <ScalarProperty Name="RecDifficultyLevelId" ColumnName="RecDifficultyLevelId" />
+          <ScalarProperty Name="DifficultyLevel" ColumnName="DifficultyLevel" />
+          <ScalarProperty Name="RecMealCostId" ColumnName="RecMealCostId" />
+          <ScalarProperty Name="MealCost" ColumnName="MealCost" />
+          <ScalarProperty Name="PreparationTime" ColumnName="PreparationTime" />
+          <ScalarProperty Name="CookTime" ColumnName="CookTime" />
+          <ScalarProperty Name="Doses" ColumnName="Doses" />
+          <ScalarProperty Name="Evaluation" ColumnName="Evaluation" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="idStatus" ColumnName="idStatus" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelRecipeIngredientDetails" FunctionName="SabeTaoBemModel.Store.spSelRecipeIngredientDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelRecipeIngredientDetails_Result">
+          <ScalarProperty Name="idrecipe" ColumnName="idrecipe" />
+          <ScalarProperty Name="RecipeName" ColumnName="RecipeName" />
+          <ScalarProperty Name="IdIngredient" ColumnName="IdIngredient" />
+          <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelUnitsDetails" FunctionName="SabeTaoBemModel.Store.spSelUnitsDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelUnitsDetails_Result">
+          <ScalarProperty Name="IdUnit" ColumnName="IdUnit" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="UnitCategoryId" ColumnName="UnitCategoryId" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="UnitSystemId" ColumnName="UnitSystemId" />
+          <ScalarProperty Name="System" ColumnName="System" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelUsersDetails" FunctionName="SabeTaoBemModel.Store.spSelUsersDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelUsersDetails_Result">
+          <ScalarProperty Name="iduser" ColumnName="iduser" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="registrationDate" ColumnName="registrationDate" />
+          <ScalarProperty Name="userfunctionid" ColumnName="userfunctionid" />
+          <ScalarProperty Name="userfunction" ColumnName="userfunction" />
+          <ScalarProperty Name="loginid" ColumnName="loginid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelUnitCategory" FunctionName="SabeTaoBemModel.Store.spSelUnitCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelUnitCategory_Result">
+          <ScalarProperty Name="IdUnitCategory" ColumnName="IdUnitCategory" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelUnitSystem" FunctionName="SabeTaoBemModel.Store.spSelUnitSystem">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SabeTaoBemModel.spSelUnitSystem_Result">
+          <ScalarProperty Name="IdUnitSystem" ColumnName="IdUnitSystem" />
+          <ScalarProperty Name="System" ColumnName="System" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

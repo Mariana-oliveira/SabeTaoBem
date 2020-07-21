@@ -1,0 +1,384 @@
+﻿$colors: ( primary: #51a252, primary-light: lighten(#51a252, 40%), primary-dark: darken(#51a252, 40%), accent: #FFF6BB, link-color: #85dc15, white: #ffffff, black: #000000, link-hover: #00aedb, menu-background: #353535 );
+
+$padding: 15px;
+$borders: 15px;
+
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+}
+
+$desktop: 840px;
+
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+body, html {
+    height: 100%;
+}
+
+
+/*********************
+VARIABLES
+**********************/
+$link-vertical-padding: 15px; //Controls Menu top & bottom padding
+$link-horizontal-padding: 20px; //Contols Menu left & right padding
+
+
+
+
+body {
+    font-family: 'Segoe UI';
+    color: color(black);
+    background-color: color(primary);
+    margin: 0;
+
+    #t {
+        font-family: Montserrat, sans-serif;
+        font-size: 150px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+        text-align: center;
+        padding-top: 70px;
+        color: color(primary);
+    }
+
+    .lead {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 30px;
+        font-weight:500;
+        line-height: 32px;
+        margin: 0 0 72px;
+        text-align: center;
+        color: color(black);
+    }
+
+    #bg {
+        clip-path: polygon(0% 6%, 100% 6%, 100% 100%, 0% 100%);
+        background-color: color(white);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+
+        @include desktop {
+            clip-path: polygon(0% 6%, 100% 6%, 100% 100%, 0% 100%);
+        }
+    }
+
+    header a {
+        color: #fff;
+        text-decoration: none;
+        padding: $padding;
+        display: block;
+        text-transform: uppercase;
+    }
+}
+
+/*********************
+RESPONSIVE BREAKPOINT
+**********************/
+@mixin breakpoint($point) {
+    @if $point == 715 {
+        @media (max-width: 715px) {
+            @content;
+        }
+    }
+    @else if $point == another-break-point {
+        @media (max-width: 0) {
+            @content;
+        }
+    }
+}
+
+
+/*********************
+NAVIGATION STYLES
+**********************/
+nav {
+    width: 100%;
+    background: color(primary-light);
+
+    @include breakpoint(715) {
+        margin: 65px 0 0 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        background: darken(#262626,5%);
+    }
+
+    .search_box {
+        width: 50%;
+        padding-left: 80px;
+        margin: 0;
+    }
+
+    .search_box input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        padding-right: 60px;
+        box-sizing: border-box;
+        background: rgba(0,0,0,0.3);
+        border: 1px solid color(primary);
+        border-radius: 10px;
+        font-size: 18px;
+        color: color(black);
+        outline: none;
+    }
+
+    .fa-search {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 25px;
+        color: #fff;
+        font-size: 25px;
+    }
+
+    ::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: #fff;
+    }
+
+    ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #fff;
+    }
+
+    :-ms-input-placeholder {
+        /* IE 10+ */
+        color: #fff;
+    }
+
+    @media screen and (max-width: 425px) {
+        .search_box {
+            width: 95%;
+        }
+    }
+
+    .log {
+        float: right;
+        padding-right: 50px;
+    }
+}
+
+nav ul {
+    margin: 0;
+    list-style: none;
+
+    @include breakpoint(715) {
+        margin: 0;
+        padding: 0;
+        box-shadow: 0px 1px 3px rgba(0,0,0,.7);
+        z-index: 15;
+    }
+
+    li {
+        float: left;
+        position: relative;
+        z-index: 1;
+
+        @include breakpoint(715) {
+            float: none;
+            position: relative;
+            margin: 0;
+        }
+
+        a {
+            display: grid;
+            padding: $link-vertical-padding $link-horizontal-padding;
+            text-align: center;
+            color: color(black);
+            text-decoration: none;
+
+            &:hover {
+                background: color(link-color);
+                color: color(primary-dark);
+                -moz-transform: scale(1.2);
+                -webkit-transform: scale(1.2);
+                -moz-box-shadow: 0 0 20px black;
+                -webkit-box-shadow: 0 0 20px black;
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+            }
+
+            @include breakpoint(715) {
+                display: table;
+                margin: 0;
+                padding: 15px 2px;
+                color: white;
+                text-shadow: none;
+                width: 100%;
+            }
+        }
+
+        &:hover ul {
+            opacity: 1;
+            max-height: 1000px;
+
+            @include breakpoint(715) {
+                max-height: 0;
+            }
+        }
+        /******************
+    SUBNAV
+    ******************/
+        .rec {
+            background: color(primary);
+            list-style: none;
+            padding: 0;
+            position: absolute;
+            width: 150px;
+            max-height: 0;
+            z-index: 0;
+            opacity: 0;
+            overflow: hidden;
+            font-size: .9em;
+            border-radius: 10px;
+
+            @include breakpoint(715) {
+                max-height: 0;
+                opacity: 1;
+                width: 100%;
+                position: relative;
+                overflow: hidden;
+            }
+
+            li {
+                float: none;
+                margin: 0;
+
+                @include breakpoint(715) {
+                    margin: 0;
+                }
+
+                a {
+                    display: block;
+                    text-align: center;
+                    padding: $link-vertical-padding/1.5 $link-horizontal-padding/1.5;
+                    margin: 0;
+                    border-right: none;
+                    text-transform: none;
+                    text-shadow: none;
+
+                    &:hover {
+                        color: color(black);
+                        background: color(link-color);
+                    }
+
+                    @include breakpoint(715) {
+                        color: white;
+                        padding-left: 20px;
+                        background: none;
+                    }
+                }
+            }
+        }
+
+        
+        
+    }
+}
+
+
+/***************************
+MOBILE NAV STYLES
+***************************/
+.mobile {
+    display: none;
+    margin: 0;
+    padding: 20px 15px;
+    background: linear-gradient(to bottom, #353535 0%,#262626 100%);
+    position: absolute;
+    color: white;
+    text-decoration: none;
+    top: 15px;
+    right: 15px;
+    line-height: 0;
+    box-shadow: 0px 2px 2px rgba(0,0,0,.35);
+
+    @include breakpoint(715) {
+        display: table;
+    }
+}
+
+.active {
+    max-height: 9000px !important;
+}
+
+@include breakpoint(715) {
+    .arrow {
+        display: block;
+        background: url(http://www.jasonkinney.me/images/arrow.png) no-repeat;
+        float: right;
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        right: 25px;
+        top: 10px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .rotate {
+        -webkit-transform: rotate(-180deg);
+        -moz-transform: rotate(-180deg);
+        -o-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+    }
+}
+
+
+.center {
+    margin: auto;
+    margin-top: 50px;
+    width: 75%;
+    padding: 10px;
+    text-align: center;
+
+    .center-formLog {
+        width: 20%;
+        margin: auto;
+        margin-top: 50px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .center-Dicas {
+        width: 80%;
+        margin: auto;
+        margin-top: 50px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .center-formRec {
+        width: 80%;
+        margin: auto;
+        margin-top: 50px;
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+.footer {
+    margin-left: 50px;
+    margin-bottom: 20px;
+}

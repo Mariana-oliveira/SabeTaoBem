@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="81da2f6c2a754fc6b68b869b38af8827" Name="Diagram1">
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbComments" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbIngredientCategory" Width="1.5" PointX="3.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbIngredients" Width="1.5" PointX="6" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbLogin" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbRecipeCategory" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbRecipeDifficultyLevel" Width="1.5" PointX="3.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbRecipeFoodStyle" Width="1.5" PointX="3.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbRecipeIngredient" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbRecipeMealCost" Width="1.5" PointX="3.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbRecipes" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbStatus" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbUnitCategory" Width="1.5" PointX="3.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbUnits" Width="1.5" PointX="6" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbUnitSystem" Width="1.5" PointX="3.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbUserFunction" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SabeTaoBemModel.tbUsers" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_Recipe_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_Status_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_User_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_IngCategory_Ingredient" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_Ing_IngQuantityUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_Login_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_RecCategory_Recipe" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_RecDifficultyLevel_Recipe" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_RecFoodStyle_Recipe" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_Recipe" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_Unit_IngQuantityUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_RecMealCost_Recipe" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_Status_Recipe" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_UserRec_Recipe" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_Status_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_UnitCategory_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_UnitSystem_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="SabeTaoBemModel.FK_UserFunction_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

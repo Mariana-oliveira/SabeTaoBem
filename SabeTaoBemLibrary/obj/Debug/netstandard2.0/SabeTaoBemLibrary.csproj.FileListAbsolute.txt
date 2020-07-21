@@ -1,0 +1,9 @@
+D:\Galileu\PROJETO\SabeTaoBem\SabeTaoBemLibrary\bin\Debug\netstandard2.0\SabeTaoBemLibrary.deps.json
+D:\Galileu\PROJETO\SabeTaoBem\SabeTaoBemLibrary\bin\Debug\netstandard2.0\SabeTaoBemLibrary.dll
+D:\Galileu\PROJETO\SabeTaoBem\SabeTaoBemLibrary\bin\Debug\netstandard2.0\SabeTaoBemLibrary.pdb
+D:\Galileu\PROJETO\SabeTaoBem\SabeTaoBemLibrary\obj\Debug\netstandard2.0\SabeTaoBemLibrary.csproj.CoreCompileInputs.cache
+D:\Galileu\PROJETO\SabeTaoBem\SabeTaoBemLibrary\obj\Debug\netstandard2.0\SabeTaoBemLibrary.AssemblyInfoInputs.cache
+D:\Galileu\PROJETO\SabeTaoBem\SabeTaoBemLibrary\obj\Debug\netstandard2.0\SabeTaoBemLibrary.AssemblyInfo.cs
+D:\Galileu\PROJETO\SabeTaoBem\SabeTaoBemLibrary\obj\Debug\netstandard2.0\SabeTaoBemLibrary.dll
+D:\Galileu\PROJETO\SabeTaoBem\SabeTaoBemLibrary\obj\Debug\netstandard2.0\SabeTaoBemLibrary.pdb
+D:\Galileu\PROJETO\SabeTaoBem\SabeTaoBemLibrary\obj\Debug\netstandard2.0\SabeTaoBemLibrary.csprojAssemblyReference.cache

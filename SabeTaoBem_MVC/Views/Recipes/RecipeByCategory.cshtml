@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SabeTaoBem_MVC.Models.Recipes.RecipeDetail>
+
+@{
+    ViewBag.Title = "RecipeByCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>RECEITAS</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Receita
+        </th>
+        <th>
+            Dificuldade
+        </th>
+        <th>
+            Custo da Refeição
+        </th>
+        <th>
+            Tempo de Preparação
+        </th>
+        <th>
+            Picture
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecipeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DifficultyLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MealCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreparationTime)
+            </td>
+            <td>
+                @{
+                    var base64 = Convert.ToBase64String(item.Picture);
+                    var imgsrc = string.Format("data:image/gif;base64, {0}", base64);
+                }
+                <img src="@imgsrc" style="width:400px; height:320px;" />
+            </td>
+        </tr>
+    }
+
+</table>
